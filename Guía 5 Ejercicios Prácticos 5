@@ -1,0 +1,62 @@
+/// Rellenar una matriz, de 3 x 3, con una palabra de 9 de longitud, pedida por el usuario, 
+/// encontrando la manera de que la frase se muestre de manera continua en la matriz. 
+/// Por ejemplo, si tenemos la palabra habilidad, nuestra matriz se debería ver así:
+/// H A B
+/// I L I
+/// D A D
+/// Nota: recordar el uso de la función Subcadena().
+
+Algoritmo guia_arreglosej5
+	
+	Definir matriz Como Caracter		
+	Dimension matriz(3,3); 
+	
+	llenar(matriz);	
+	mostrarMatriz(matriz);
+	
+FinAlgoritmo
+
+//Llenar la matriz
+SubProceso llenar(matriz)
+	Definir i, j Como Entero
+	Definir frase Como Caracter
+	
+	Escribir "*************************************";
+	Escribir "Ingrese una frase de máximo 9 letras: ";
+	Escribir "*************************************";
+	Leer frase;
+	
+	Para i = 0 Hasta 2 Con Paso 1 Hacer
+		Para j = 0 Hasta 2 Con Paso 1 Hacer						
+			Si i == 0 Entonces
+				matriz(i,j) = Subcadena(frase,j,j);
+			SiNo
+				Si i == 1 Entonces
+					matriz(i,j) = Subcadena(frase,j + 3, j + 3);
+				SiNo
+					Si i == 2 Entonces
+						matriz(i,j) = Subcadena(frase,j + 6, j + 6);					
+					Fin Si
+				Fin Si	
+			Fin Si			
+		Fin Para		
+	Fin Para
+FinSubProceso
+
+//Mostrar matriz
+SubProceso mostrarMatriz(matriz)
+	Definir i, j Como Entero	
+	
+	Escribir "";
+	Escribir "*MATRIZ*";
+	Escribir "********";
+	
+	Para i = 0 Hasta 2 Con Paso 1 Hacer
+		Para j = 0 Hasta 2 Con Paso 1 Hacer						
+			Escribir Sin Saltar matriz(i,j)," ";						
+		Fin Para		
+		
+		Escribir "";
+	Fin Para	
+FinSubProceso
+
