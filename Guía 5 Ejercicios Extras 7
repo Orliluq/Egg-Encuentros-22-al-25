@@ -1,0 +1,104 @@
+/// Una empresa de venta de productos por correo desea realizar una estadística de las ventas 
+/// realizadas de cada uno de sus productos a lo largo de una semana. Distribuya luego 5 
+/// productos en los 5 días hábiles de la semana. Se desea conocer:
+/// a) Total de ventas por cada día de la semana.
+/// b) Total de ventas de cada producto a lo largo de la semana.
+/// c) El producto más vendido en cada semana.
+/// d) El nombre, el día de la semana y la cantidad del producto más vendido.
+/// El informe final tendrá un formato como el que se muestra a continuación:
+///             Lunes Martes Miércoles Jueves Viernes Total producto
+/// Producto 1
+/// Producto 2
+/// Producto 3
+/// Producto 4
+/// Producto 5
+/// Total semana
+/// Producto
+/// más vendido
+
+Algoritmo guiaextra_arreglosej7
+	//	El eje de las abscisas son los días de la semana + total producto = 6
+	//	El eje de las ordenadas son los productos, total de la semana y el producto más vendido = 7; matriz = 6x7
+	
+	Definir matriz, i, j, sumH, sumV, n Como Entero
+	
+	Dimension matriz[6,7] 
+	Dimension sumH[5] 
+	
+	sumV = 0
+	n = 0
+	
+	//	Los días de la semana son valores aleatorios, mientras que el total producto es el resultado de esos valores
+	
+	//	El total semana es un valor que puede estar separado de la matriz pero el ejercicio nos obliga a tenerlo ahí.
+	//	Así que procederemos a colocarlo en la última columna junto a total producto.
+	//	Lo mismo con el producto más vendido.
+	
+	//	La lógica detrás del según es que mientras el bucle sea diferente a la última posición, Entonces que coloque datos aleatorios.
+	
+	//	También que los coloque hasta la fila número 5. Entonces primero rellenar las filas de los productos y los días de la semana.
+	
+	Escribir "*************************************************************"
+	Escribir "            Lun.   Mar.   Mié.   Jue.   Vie.  Total producto"
+	Escribir "*************************************************************"
+	Para i = 0 Hasta 5 - 1 Hacer //Coloco 5 - 1 porque me reservo la última columna para los resultados.
+		sumH[i] = 0 //Inicializo la variable que suma mis filas.
+		Escribir "Producto " i + 1 ". " Sin Saltar
+		
+		//5 - 1 porque me reservo la fila de totales y productos más vendidos.
+		Para j = 0 Hasta 5 - 1 Hacer 
+			matriz[i,j] = Aleatorio(100,1000)
+			// Valor de las sumas de cada producto "Total producto."
+			sumH[i] = sumH[i] + matriz[i,j] 
+			//Valor de todas las ventas "Total semana".
+			sumV = sumV + sumH[i] 
+			Escribir "[" matriz[i,j] "]  "  Sin Saltar
+		FinPara
+		Escribir sumH[i]
+	FinPara
+	
+	// Luego se guardan los datos de las sumas en la matriz.
+	// Aquí utilizo la última posición de las filas, es decir, la última columna.
+	Para i = 6 -1 Hasta 6 - 1 Hacer 
+	// 5 - 1 porque me reservo la fila de totales y productos más vendidos.	
+		Para j = 0 Hasta 5 - 1 Hacer 
+		// Ingreso los valores a la última columna para tener los datos en la matriz.
+			matriz[i,j] = sumH[j] 
+		FinPara
+	FinPara
+	
+	// Ingreso los datos del "Total semana"
+	//Estoy usando la última posición de las filas, es decir, la última columna.
+	Para i = 6 - 1 Hasta 6 - 1 Hacer 
+		// Fila y columna para colocar el "Total semana"
+		Para j = 6 - 1 Hasta 6 - 1 Hacer 
+			// Ingreso los valores a la posición i,j 5,5 para tener los datos en la matriz.
+			matriz[i,j] = sumV 
+			// Muestro el valor en la posición correspondiente.
+			Escribir "Total semana                                      " matriz[i,j] 
+		FinPara
+	FinPara
+	
+	// Determino del valor del producto más vendido.
+	//Estoy usando la última posición de las filas, es decir, la última columna.
+	Para i = 6 - 1 Hasta 6 - 1 Hacer 
+		// Fila y columna para colocar el "Total semana"
+		Para j = 0  Hasta 5 - 1 Hacer 
+			Si sumH[j] > n Entonces
+				n = sumH[j]
+			FinSi
+		FinPara
+	FinPara
+	
+	// Determinado el valor del producto más vendido, se busca cuál es su posición.
+	// Estoy usando la última posición de las filas, es decir, la última columna.
+	Para i = 6 - 1 Hasta 6 - 1 Hacer 
+		// Fila y columna para colocar el "Total semana"
+		Para j = 0  Hasta 5 - 1 Hacer 
+			Segun sumH[j] Hacer
+				n:
+					Escribir "Producto más vendidos:                               " j + 1
+			FinSegun
+		FinPara
+	FinPara
+FinAlgoritmo
