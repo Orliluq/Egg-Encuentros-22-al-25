@@ -1,0 +1,103 @@
+/// Una matriz mágica es una matriz cuadrada (tiene igual número de filas que de columnas) que
+/// tiene como propiedad especial que la suma de las filas, las columnas y las diagonales es igual.
+///	Por ejemplo:
+///	2 7 6
+///	9 5 1
+///	4 3 8
+/// En la matriz de ejemplo las sumas son siempre 15. Considere el problema de construir un
+/// algoritmo que compruebe si una matriz de datos enteros es mágica o no, y en caso de que
+/// sea mágica escribir la suma. Además, el programa deberá comprobar que los números
+/// introducidos son correctos, es decir, están entre el 1 y el 9. El usuario ingresa el tamaño de la
+/// matriz que no debe superar orden igual a 10.
+
+Algoritmo guia_arreglos_ej6magica
+	
+	Definir i, j, n, contador, matriz, sumaFila, sumaColumna, sumaDiag1, sumaDiag2 Como Entero
+	
+	contador = 0;
+	sumaDiag1 = 0;
+	sumaDiag2 = 0;
+	
+	// Solicito un número para la dimensión del arreglo:
+	Escribir "*****************************MATRIZ MÁGICA*****************************";
+	Hacer
+		Escribir "Ingrese un número del 1 al 10 para la dimensión de la Matriz Mágica:";
+		Leer n;
+	Mientras Que n > 10 O n <1;
+	
+	// Agrego las dimensiones:
+	Dimension matriz[n,n], sumaFila[n], sumaColumna[n]
+	
+	// Pido al usuario números del 1 al 9 para llenar la Matriz.
+	Escribir "Ingrese números del 1 al 9 para llenar la Matriz:";
+	Para i = 0 Hasta n-1 Hacer
+		Para j = 0 Hasta n-1 Hacer
+			Hacer
+				Escribir Sin Saltar "[" i " , " j "] - ";
+				Leer matriz[i,j];
+				
+				Si matriz[i,j] > 9 O matriz[i,j] < 1
+					Escribir "Número ingresado fuera del rango indicado. Intente nuevamente:";
+				FinSi
+			Mientras Que matriz[i,j] > 9 O matriz[i,j] < 1
+		FinPara
+	FinPara
+	
+	//Lleno los arreglos de 0 para realizar las sumas:
+	Para i = 0 Hasta n-1 Hacer
+		sumaFila[i] = 0;
+		sumaColumna[i] = 0;
+	FinPara
+	
+	// Sumo las filas, columnas y diagonales:
+	Para i = 0 Hasta n-1 Hacer
+		Para j = 0 Hasta n-1 Hacer
+			sumaFila[contador] = matriz[i,j] + sumaFila[contador];
+			sumaColumna[contador] = matriz[j,i] + sumaColumna[contador];
+			
+			// Suma 1era Diagonal:
+			Si i == j
+				sumaDiag1 = matriz[i,j] + sumaDiag1;
+			FinSi
+			
+			// Suma 2da Diagonal:
+			Si i + j == n-1
+				sumaDiag2 = matriz[i,j] + sumaDiag2;
+			FinSi
+		FinPara
+		contador = contador + 1;
+	FinPara
+	
+	// Comparo la igualdad de las sumas:
+	contador = -1;
+	Para i = 0 Hasta n-1 Hacer
+		Si sumaFila[i] == sumaColumna[i]
+			Si sumaDiag1 == sumaDiag2
+				contador = contador + 1
+			FinSi
+		FinSi
+	FinPara
+	
+	// Resultados:
+	Si contador == n-1
+		Escribir "***********************";
+		Escribir "MATRIZ MÁGICA DE SUMA: " sumaFila[0];
+		Escribir "************************";
+	SiNo
+		Escribir "***********************";
+		Escribir "LA MATRIZ NO ES MÁGICA.";
+		Escribir "************************";
+	FinSi
+	
+	// Muestro la Matriz:
+	Para i = 0 Hasta n-1 Hacer
+		Escribir Sin Saltar " ";
+		Para j = 0 Hasta n-1 Hacer
+			Escribir Sin Saltar "[" matriz[i,j] "]";
+		FinPara
+		Escribir Sin Saltar " = " sumaFila[i];
+		Escribir "";
+	FinPara
+	
+FinAlgoritmo
+
