@@ -1,0 +1,47 @@
+/// Escribir un programa que realice la búsqueda lineal de un número entero ingresado por el 
+/// usuario en una matriz de 5x5, llena de números aleatorios y devuelva por pantalla las 
+/// coordenadas donde se encuentra el valor, es decir en que fila y columna se encuentra. En 
+/// caso de no encontrar el valor dentro de la matriz se debe mostrar un mensaje.
+
+Algoritmo guia_arreglosej2
+	
+	Definir fila, columna, n, resultado, i, j Como Entero
+	Definir matriz como Entero 
+	Dimension matriz[5,5];
+	resultado = 0;
+	
+	Escribir "*************************************************";
+	Escribir "Ingrese un número para iniciar la búsqueda lineal: ";
+	Escribir "";
+	Leer n;
+	
+	Para fila = 1 Hasta 4 Con Paso 1 Hacer 
+		Para columna = 1 Hasta 4 Con Paso 1 Hacer 
+			matriz[fila,columna] = azar(25) + 1;
+			Si n = matriz[fila,columna] Entonces
+				Escribir "El número está en la ubicacion: ",fila,",",columna;
+				resultado = 1 + resultado;
+			SiNo
+				resultado = 0 + resultado;
+			FinSi
+		FinPara
+	FinPara
+	
+	Para i = 0 Hasta 4 Con Paso 1 Hacer
+		Para j = 0 Hasta 4 Con Paso 1 Hacer
+			matriz(i,j) = azar(25);
+		FinPara
+	FinPara
+	
+	Para i = 0 Hasta 4 Con Paso 1 Hacer
+		Para j = 0 Hasta 4 Con Paso 1 Hacer
+			Escribir matriz(i,j)," " Sin Saltar
+		FinPara
+		Escribir "";
+	FinPara
+	
+	Si resultado = 0 Entonces
+		Escribir "Ningun número coincide.";
+	FinSi
+	
+FinAlgoritmo
