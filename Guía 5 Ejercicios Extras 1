@@ -1,0 +1,32 @@
+/// Realizar un programa que rellene de números aleatorios una matriz a través de un 
+/// subprograma y generar otro subprograma que muestre por pantalla la matriz final.
+
+Algoritmo guiaextra_arreglosej1
+	
+	Definir i, j, n Como Entero
+	Definir matriz Como Real
+	Leer n
+	Dimension matriz[n,n]
+	llenarMatriz[matriz,n]
+	mostrarMatriz[matriz,n]
+	
+FinAlgoritmo
+
+SubProceso llenarMatriz(matriz,n)
+	Definir i, j Como Entero
+	Para i = 0 Hasta n-1 Con Paso 1 Hacer
+		Para j = 0 hasta n-1 Con Paso 1 hacer
+				matriz(i,j) = Aleatorio(0,99);
+		FinPara
+	FinPara
+FinSubProceso
+
+SubProceso mostrarMatriz(matriz,n)
+	Definir i, j Como Entero
+	Para i = 0 Hasta n-1 Con Paso 1 Hacer
+		Para j = 0 Hasta n-1 Con Paso 1 Hacer
+			Escribir "[", matriz(i,j), "]" Sin Saltar
+		FinPara
+		Escribir " ";
+	FinPara
+FinSubProceso
