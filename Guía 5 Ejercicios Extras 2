@@ -1,0 +1,100 @@
+/// Crear una matriz de orden n * m (donde n y m son valores ingresados por el usuario), llenarla 
+/// con números aleatorios entre 1 y 100 y mostrar su traspuesta. 
+/// ¿Qué es una Matriz Traspuesta?
+/// La matriz traspuesta de una matriz A se denota por B y se obtiene cambiando sus filas por 
+/// columnas (o viceversa).
+/// Matriz A = ? Matriz B =
+/// Ejemplo: Obsérvese, por ejemplo, que la primera fila de la matriz A es (1,0,4). Esta fila es la 
+/// primera columna de su matriz traspuesta.
+
+Algoritmo guiaextra_arreglos_ej2
+	
+	Definir matrizA, matrizB, n, m Como Entero
+	Escribir "Ingrese dos números enteros para el tamaño de la matriz:";
+	Leer n;
+	Leer m;
+	
+	Dimension matrizA(n,m)
+	
+	// Si los valores son diferentes entonces se dimensiona la matriz B, con los subíndices invertidos para que no de error al llenarla.
+	Si n <> m entonces
+		Dimension matrizB(m, n)	
+	SiNo
+		Dimension matrizB(n, m)
+	FinSi
+	
+	// Aquí se llama al subproceso que llena la matriz A y al subproceso que hace la trasposición de MatrizA a MatrizB
+	llenarm(matrizA, n, m)				
+	transpuestam(matrizA, matrizB, n, m)	
+
+FinAlgoritmo
+
+SubProceso llenarm(matrizA Por Referencia, n, m)
+	Definir i, j Como Entero
+	
+	i = 0;
+	j = 0;
+	
+	Para i = 0 Hasta n-1 Con Paso 1 Hacer
+		Para j = 0 Hasta m-1 Con Paso 1 Hacer
+			matrizA(i,j) = Aleatorio(1,100)
+		FinPara
+	FinPara
+FinSubProceso
+
+// Para verificar que la matriz A si esta siendo traspuesta en la matriz B
+SubProceso transpuestam(matrizA, matrizB Por referencia, n, m)
+	Definir i, j Como Entero
+	
+	i = 0;
+	j = 0;
+	
+	Escribir "LA MATRIZ ALEATORIA ES: ";
+	Escribir "***********************"
+	Para i = 0 Hasta n-1 Con Paso 1 Hacer			
+		Para j = 0 Hasta m-1 Con Paso 1 Hacer
+			Escribir "[", matrizA(i,j), "]" Sin Saltar
+		FinPara
+		Escribir " "
+	FinPara
+	
+	// Hay que verificar si los valores de filas y columnas son diferentes, con los subíndices y trasponer los valores de la matriz A a la B
+	// Luego se ingresa los valores de la matriz A en la matriz B, invirtiendo los subíndices de la matriz B.
+	Si n <> m Entonces						 
+		Para i = 0 Hasta n-1 Con Paso 1 Hacer 	
+			Para j = 0 Hasta m-1 Con Paso 1 Hacer
+				matrizB(j,i) = matrizA(i,j)  			
+			FinPara								
+		FinPara
+		
+		Escribir ""
+		Escribir "LA MATRIZ TRASPUESTA ES:  ";
+		Escribir "************************"
+
+	// Como las filas y las columnas son de valores diferentes, para matriz B las filas son M y las columnas son N.
+		Para i = 0 Hasta m-1 Con Paso 1 Hacer   		
+			Para j = 0 hasta n-1 con paso 1 Hacer		
+				Escribir "[", matrizB(i,j), "]" Sin Saltar
+			FinPara
+			Escribir " "
+		FinPara
+		
+	SiNo   
+	// Si el número de filas y columnas es igual, se debería recorrer la matriz B, ingresando los valores de la matriz A con los subíndices invertidos.
+		Para i = 0 Hasta n-1 Con Paso 1 Hacer
+			Para j = 0 Hasta m-1 Con Paso 1 Hacer
+				matrizB(i,j) = matrizA(j,i)
+			FinPara
+		FinPara
+		
+		Escribir "LA MATRIZ TRASPUESTA ES:  ";
+		Escribir "************************"
+		Para i = 0 Hasta n-1 Con Paso 1 Hacer
+			Para j = 0 Hasta m-1 Con Paso 1 Hacer
+				Escribir "[", matrizB(i,j), "]" Sin Saltar
+			FinPara
+			Escribir " "
+		FinPara
+	FinSi
+	
+FinSubProceso
