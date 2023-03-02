@@ -1,0 +1,44 @@
+/// Realizar un programa que permita visualizar el resultado del producto de una matriz de
+/// enteros de 3x3 por un vector de 3 elementos. Los valores de la matriz y el vector pueden
+/// inicializarse evitando así el ingreso de datos por teclado. Para conocer más acerca de cómo se
+/// realiza la multiplicación entre matrices consultar el siguiente link:
+/// https://es.wikibooks.org/wiki/%C3%81lgebra_Lineal/Matriz_por_vector
+
+Algoritmo guiaextra_arreglosej6
+	
+	Definir matriz, vector, i, j Como Entero
+	
+	Dimension matriz[3, 3], vector[3]
+	
+	Para i = 0 Hasta 2 Hacer
+		vector[i] = Aleatorio(1,9)
+		Para j = 0 Hasta 2 Hacer
+			matriz[i,j] = Aleatorio(1,9)
+		FinPara
+	FinPara
+	
+	//	Si se hace un Esquema:
+	
+	//	[i0,0] [i0,1] [i0,2]         [j0,0]        [i0,0j0,0]  [i0,1j1,0]  [i0,2j2,0]
+	//	[i1,0] [i1,1] [i1,2]   X    [j1,0]    =   [i1,0j0,0]  [i1,1j1,0]  [i1,2j2,0]
+	//	[i2,0] [i2,1] [i2,2]       [j2,0]        [i2,0j0,0]  [i2,1j1,0]  [i2,2j2,0]
+	
+	// Ahora se muestra la matriz, el vector y el resultado por pantalla
+	Escribir "MATRIZ         VECTOR";
+	Para i = 0 Hasta 2 Hacer
+		Para j = 0 Hasta 2 Hacer
+			Escribir "[" matriz[i,j] "] " Sin Saltar
+		FinPara
+		Escribir"    [" vector[i] "] "
+	FinPara
+	
+	Escribir "";
+	Escribir "RESULTADO:"
+	Para i = 0 Hasta 2 Hacer
+		para j = 0 Hasta 2 Hacer
+			Escribir "[" matriz[i,j] * vector[i] "] " Sin Saltar 
+		FinPara
+		Escribir ""
+	FinPara
+	
+FinAlgoritmo
