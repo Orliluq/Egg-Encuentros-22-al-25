@@ -1,0 +1,93 @@
+/// Una distribuidora de Nescafé tiene 4 representantes que viajan por toda la Argentina 
+/// ofreciendo sus productos. Para tareas administrativas el país está dividido en cinco zonas: 
+/// Norte, Sur, Este, Oeste y Centro. Mensualmente almacena sus datos y obtiene distintas 
+/// estadísticas sobre el comportamiento de sus representantes en cada zona. Se desea hacer un
+/// programa que lea el monto de las ventas de los representantes en cada zona y calcule luego: 
+/// a) el total de ventas de una zona introducida por teclado
+/// b) el total de ventas de un vendedor introducido por teclado en cada una de las zonas
+/// c) el total de ventas de todos los representantes.
+
+Algoritmo ejercicioextra8guia5
+
+Definir representantes, ventas, j, i, ventasZona Como Entero
+Definir zonas Como Caracter
+
+Dimension ventasZona(5)
+Dimension representantes(4)
+Dimension zonas(5)
+
+representantes(0) = 0;
+representantes(1) = 0 ; 
+representantes(2) = 0 ; 
+representantes(3) = 0
+ventasZona(0) = 0 ; 
+ventasZona(1) = 0 ; 
+ventasZona(2) = 0 ; 
+ventasZona(3) = 0 ; 
+ventasZona(4) = 0
+zonas(0) = "Norte" ; 
+zonas(1) = "Sur" ; 
+zonas(2) = "Este" ; 
+zonas(3) = "Oeste" ; 
+zonas(4) = "Centro"
+
+Para i = 0 Hasta 4 Hacer
+	Escribir "Cantidad de ventas en zona: " zonas(i)
+	Para j = 0 Hasta 3 Hacer
+		ventas = 0
+		Escribir "Representante nro. " j+1 ":"
+		Leer ventas
+		representantes(j) = representantes(j) + ventas
+		ventasZona(i) = ventasZona(i) + ventas
+	FinPara
+FinPara
+
+Limpiar Pantalla
+menu(representantes,zonas,ventasZona)
+FinAlgoritmo
+
+Subproceso menu(representantes, zonas, ventasZona)
+	Definir i, j, op, opZona, opRep Como Entero
+	
+	Hacer 
+		Escribir "*******************************************************"
+		Escribir "BIENVENIDO A LA DISTRIBUIDORA NESCAFÉ, ELIJA UNA OPCIÓN:"
+		Escribir "********************************************************"
+		Escribir "1- Ver el Total de Ventas de una Zona:"
+		Escribir "2- Ver el Total de Ventas de un Representante en específico:"
+		Escribir "3- Ver el Total de Ventas de todos los Representantes:"
+		Escribir "0- Salir"
+		Leer op;
+		
+		Segun op Hacer
+			1: Escribir "Zona en la que requiere total de ventas:"
+				Escribir "0-Norte ; 1-Sur ; 2-Este ; 3- Oeste ; 4-Centro"
+				Leer opZona;
+				Segun opZona Hacer
+					0, 1, 2, 3, 4: Escribir "Las ventas de la Zona " zonas(opZona) " fueron un total de: " ventasZona(opZona);
+					De Otro Modo: 
+						Escribir "Opción no válida."
+				FinSegun
+				
+			2: Escribir "Total de Ventas del Representante Nro:(1-4)"
+				Leer opRep
+				Segun opRep Hacer
+					1, 2, 3, 4: Escribir "Las ventas totales del Representante Nro. " opRep " fueron de: " representantes(opRep-1);
+					De otro modo: 
+						Escribir "Opción no vçalida."
+				FinSegun
+			3: Escribir "El Total de Ventas de este mes fue de: " representantes(0) + representantes(1) + representantes(2) + representantes(3);
+				
+			0: Escribir "Gracias por utilizar nuestro Programa de Ventas. Salir del Sistema."
+				
+			De Otro Modo: 
+				Escribir "Opción no válida."
+		FinSegun
+		
+		Escribir ""
+		Escribir "---------Presione enter para continuar:-----------"
+		Esperar Tecla
+		Limpiar Pantalla
+		
+	Mientras Que op <> 0
+FinSubProceso
