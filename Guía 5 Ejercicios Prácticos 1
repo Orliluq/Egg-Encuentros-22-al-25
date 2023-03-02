@@ -1,0 +1,37 @@
+/// Realizar un programa que rellene una matriz de 3x3 con 9 valores ingresados por el usuario y 
+/// los muestre por pantalla.
+
+Algoritmo guia_arreglosej1
+	
+	Definir i, j, matriz, n Como Entero
+	Dimension matriz[3,3];
+	
+	Escribir "****************************************************";
+	Escribir "Ingrese los valores del 1 al 9 para llenar la Matriz:";
+	Para i = 0 Hasta 2 Hacer
+		Para j = 0 Hasta 2 Hacer
+			Hacer
+				Escribir Sin Saltar "[" i " , " j "] - ";
+				Leer matriz[i,j];
+				
+				Si matriz[i,j] > 9 O matriz[i,j] < 1
+					Escribir "Número ingresado fuera del rango indicado. Intente nuevamente:";
+				FinSi
+			Mientras Que matriz[i,j] > 9 O matriz[i,j] < 1
+		FinPara
+	FinPara
+	
+	Para i = 0 Hasta 2 Con Paso 1 Hacer
+		Para j = 0 Hasta 2 Con Paso 1 Hacer
+			matriz(i,j) = azar(9);
+		FinPara
+	FinPara
+	
+	Para i = 0 Hasta 2 Con Paso 1 Hacer
+		Para j = 0 Hasta 2 Con Paso 1 Hacer
+			Escribir matriz(i,j)," " Sin Saltar
+		FinPara
+		Escribir "";
+	FinPara
+	
+FinAlgoritmo
