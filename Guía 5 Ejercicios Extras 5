@@ -1,0 +1,71 @@
+/// Crear una matriz que contenga 3 columnas y la cantidad filas que decida el usuario. Las dos
+/// primeras columnas contendrán valores enteros ingresados por el usuario y en la 3 columna se
+/// deberá almacenar el resultado de sumar el número de la primera y segunda columna. Mostrar
+/// la matriz de la siguiente forma:
+///	3 + 5 = 8
+///	4 + 3 = 7
+///	1 + 4 = 5
+
+Algoritmo guiaextra_arreglosej5
+	
+	
+	Definir matriz, i, j, m, n Como Entero
+	
+	Escribir "Ingrese la cantidad de sumas que desea realizar: ";
+	Leer m;
+	//Número de columnas fijo = número de arrays de las abscisas = 3.
+	n = 3 
+	Dimension matriz[n, m]
+	
+	// Realizar un bucle que lea la matriz según la posición para que solo pueda hacerlo
+	// en las posiciones 0 y 1, a fin de que en otro bucle con las mismas variables se realice solo en la posición 2.
+	
+	Para j = 0 Hasta m -1 Hacer //Ordenadas
+		Escribir "Ingrese los dos números para la operación número " j + 1
+		
+	// Recordar que tomo -2 y no -1 debido a que me estoy reservando una posición para poder realizar la suma posteriormente (Abscisas)	
+		Para i = 0 Hasta n -2 Hacer 
+		//Se utiliza i y no j debido a que el eje de las abscisas es la i.	
+			Segun i Hacer 
+				0:
+					Leer matriz[i, j] //[n,m] == [i,j]
+				1:
+					Leer matriz[i, j]
+			FinSegun
+		FinPara
+	FinPara
+	
+	// Ahora hacemos las iteraciones necesarias para calcular la tercera columna:
+	//Se realizan las iteraciones con j debido a que trabajamos de forma vertical ahora.
+	Para j = 0 Hasta m - 1 Hacer  
+		//Lleno las últimas columnas.
+		matriz[n - 1, j] = matriz[0, j] + matriz[1, j] 
+		// n - 1 es la última posición (la reservada).
+		//	La variable j es importante colocarla tal y cual está en todo el procedimiento.
+		//	Para entenderlo, es mejor decir que x1 + x2 = x3. Justo es lo que hago con esta operación.
+		//	Y estas se realizan m - 1 veces debido a que son la cantidad de filas que el usuario estipula.
+	FinPara
+	
+	// Mostrar en pantalla los resultados tal como se requieren.
+	
+	Escribir "El resultado es: "
+	
+	Para j = 0 Hasta m - 1 Hacer
+		// Contabilizar la cantidad de operaciones del usuario.
+		Escribir j + 1 ") " Sin Saltar 
+		//Se coloca i dentro de j debido a que el eje de las abscisas es el que requiere el cambio.
+		Para i = 0 Hasta  n - 2 Hacer 
+			Segun i Hacer
+				//Aquí solamente indico que mientras el primer número se muestre, entonces está bien que coloque el signo de más.	
+				0:
+					Escribir matriz[i, j] " + " Sin Saltar 
+				1:
+				//En esta otra solo indico que escriba la posición.
+					Escribir matriz[i, j] Sin Saltar 
+			FinSegun
+		FinPara
+		//Antes de pasar a la siguiente fila, es requerido mostrar la suma anteriormente guardada.
+		Escribir " = " matriz[n - 1, j] 
+	FinPara
+	
+FinAlgoritmo
