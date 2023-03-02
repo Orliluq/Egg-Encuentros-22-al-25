@@ -1,0 +1,54 @@
+/// Realizar un programa que calcule la multiplicación de dos matrices de enteros de 3x3. 
+/// Inicialice las matrices para evitar el ingreso de datos por teclado.
+
+Algoritmo guiaextra_arreglosejercicio4
+	
+	Definir matrizA, matrizB, multi, i, j Como Entero;
+	Dimension matrizA[3,3], matrizB[3,3], multi[3,3];
+	
+	llenarMatriz(matrizA);
+	llenarMatriz(matrizB);
+	
+	Escribir "";
+	Escribir "MATRIZ A:"
+	Escribir "********"
+	mostrarMatriz(matrizA);
+	Escribir "";
+	Escribir "MATRIZ B:";
+	Escribir "********"
+	mostrarMatriz(matrizB);
+	Escribir "";
+	Escribir "MATRIZ A * B:";
+	Escribir "************"
+	multiMatriz(matrizA, matrizB, multi);
+	mostrarMatriz(multi);
+	
+FinAlgoritmo
+
+SubProceso llenarMatriz(matriz)
+	Definir i, j Como Entero;
+	Para i = 0 Hasta 2 Hacer
+		Para j = 0 Hasta 2 Hacer
+			matriz[i,j] = Aleatorio(0,9);
+		FinPara
+	FinPara
+FinSubProceso
+
+SubProceso mostrarMatriz(matriz)
+	Definir i, j Como Entero;
+	Para i = 0 Hasta 2 Hacer
+		Para j = 0 Hasta 2 Hacer
+			Escribir Sin Saltar "[" matriz[i,j] "]"
+		FinPara
+		Escribir "";
+	FinPara
+FinSubProceso
+
+SubProceso multiMatriz(matriz1,matriz2,matriz3)
+	Definir i, j Como Entero
+	Para j = 0 Hasta 2 Hacer
+		Para i = 0 Hasta 2 Hacer
+			matriz3[i,j] = matriz1[i,0] * matriz2[0,j] + matriz1[i,1] * matriz2[1,j] + matriz1[i,2] * matriz2[2,j];
+		FinPara
+	FinPara
+FinSubProceso
